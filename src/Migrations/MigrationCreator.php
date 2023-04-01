@@ -5,6 +5,7 @@ namespace Agontuk\Schema\Migrations;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem as Flysystem;
+use League\Flysystem\ZipArchive\FilesystemZipArchiveProvider;
 use League\Flysystem\ZipArchive\ZipArchiveAdapter;
 
 class MigrationCreator
@@ -47,7 +48,13 @@ class MigrationCreator
     public function __construct(Filesystem $files)
     {
         $this->files = $files;
-        $this->flysystem = new Flysystem(new ZipArchiveAdapter(storage_path('migrations.zip')));
+        $this->flysystem = new Flysystem(
+            new ZipArchiveAdapter(
+                new FilesystemZipArchiveProvider(
+                    storage_path('migrations.zip')
+                )
+            )
+        );
     }
 
     /**
@@ -133,10 +140,7 @@ class MigrationCreator
         }
 
         // Write the schema into a txt file.
-        $this->flysystem->put('schema.json', json_encode($schema, JSON_PRETTY_PRINT));
-
-        // All migrations pushed, close the archive.
-        $this->flysystem->getAdapter()->getArchive()->close();
+        $this->flysystem->write('schema.json', json_encode($schema, JSON_PRETTY_PRINT));
     }
 
     /**
@@ -183,7 +187,7 @@ class MigrationCreator
         $stub = $this->files->get(__DIR__ . '/stubs/create.stub');
 
         $contents = $this->populateStubWithData($name, $stub, $columnData);
-        $this->flysystem->put($path, $contents);
+        $this->flysystem->write($path, $contents);
 
         return $path;
     }
@@ -221,7 +225,7 @@ class MigrationCreator
 
         $contents = str_replace('return 1;', implode(PHP_EOL, $upData), $stub);
         $contents = str_replace('return 2;', implode(PHP_EOL, $downData), $contents);
-        $this->flysystem->put($path, $contents);
+        $this->flysystem->write($path, $contents);
 
         return $path;
     }
