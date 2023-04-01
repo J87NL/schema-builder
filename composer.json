@@ -3,10 +3,14 @@
     "description": "Schema designer & migration generator for Laravel",
     "type": "library",
     "keywords": [
+        "entity",
+        "relationship",
+        "diagram",
         "schema",
         "database",
         "schema builder",
         "schema design",
+        "laravel",
         "migration generator"
     ],
     "homepage": "https://github.com/j87nl/schema-builder",
@@ -17,6 +21,12 @@
             "email": "rifat662@gmail.com",
             "role": "Developer",
             "homepage": "https://github.com/Agontuk"
+        },
+        {
+            "name": "Noud de Brouwer",
+            "email": "noud4@home.nl",
+            "role": "Developer",
+            "homepage": "https://github.com/noud"
         }
     ],
     "require": {
@@ -33,6 +43,13 @@
     "autoload": {
         "psr-4": {
             "Agontuk\\Schema\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Agontuk\\Schema\\SchemaServiceProvider"
+            ]
         }
     }
 }
