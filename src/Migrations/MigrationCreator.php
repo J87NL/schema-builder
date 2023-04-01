@@ -241,8 +241,6 @@ class MigrationCreator
      */
     private function populateStubWithData($name, $stub, $columnData)
     {
-        $stub = str_replace('DummyClass', 'Create' . $this->getClassName($name) . 'Table', $stub);
-
         // We will replace the table & columns place-holders with
         // the table & columns specified by the developer.
         $stub = str_replace('DummyTable', $name, $stub);
