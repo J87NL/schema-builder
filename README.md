@@ -1,28 +1,25 @@
-# Laravel/Lumen schema builder
+# Laravel schema builder
 ![schema-builder](./doc/schema-builder.png?raw=true "schema-builder")
 
-Database designer & migration generator package for laravel & lumen.
+Database designer & migration generator package for Laravel.
 
 Checkout **[agontuk.github.io/schema-designer](https://agontuk.github.io/schema-designer)** to see how it works.
 
 ## Installation
-```php
-composer require --dev noud/schema-builder
+Add at the bottom of your `composer.json`:
+```json
+    "prefer-stable": true, // add a comma to this line
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/J87NL/schema-builder"
+        }
+    ]
+} // leave this existing closing tag
 ```
-
-For Laravel(>=5.5) this package utilises package auto-discovery. There is no need to add the service providers manually. You may notice the following message post-autoload.
-
-```bash
-Discovered Package: noud/schema-builder
-```
-
-or for Laravel(<5.5), register SchemaServiceProvider on the `providers` array in `config/app.php`,
-```php
-\Agontuk\Schema\SchemaServiceProvider::class
-```
-or for Lumen in `bootstrap/app.php`
-```php
-$app->register(\Agontuk\Schema\SchemaServiceProvider::class);
+Run in your console to install:
+```cli
+composer require --dev j87nl/schema-builder:dev-main
 ```
 
 Finally enable required routes via `.env`,
@@ -37,4 +34,4 @@ Navigate to `yoursite.com/schema` and build your database schema, then use the e
 > NOTE: Not all features of migration are supported yet. Feel free to submit any issues or pull requests.
 
 ## License
-[MIT](https://github.com/noud/schema-builder/blob/master/LICENSE)
+[MIT](https://github.com/J87NL/schema-builder/blob/main/LICENSE)
