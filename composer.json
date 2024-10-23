@@ -31,9 +31,9 @@
     ],
     "require": {
         "ext-zip": "*",
-        "illuminate/filesystem": "9.*|10.*",
-        "illuminate/http": "9.*|10.*",
-        "illuminate/support": "9.*|10.*",
+        "illuminate/filesystem": "9.*|10.*|11.*",
+        "illuminate/http": "9.*|10.*|11.*",
+        "illuminate/support": "9.*|10.*|11.*",
         "league/flysystem": "^3.0",
         "league/flysystem-ziparchive": "^3.0"
     },
